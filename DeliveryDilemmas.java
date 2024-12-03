@@ -3,7 +3,6 @@ import java.util.Collections;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
-
 abstract class Package {
     private String trackingID;
     private String destination;
@@ -48,11 +47,10 @@ abstract class Package {
 
     @Override
     public String toString() {
-        return "Tracking ID: " + trackingID + " | Destination: " + destination + 
-               " | Weight: " + weight + " | Cost: $" + String.format("%.2f", calculateShippingCost());
+        return "Tracking ID: " + trackingID + " | Destination: " + destination +
+                " | Weight: " + weight + " | Cost: $" + String.format("%.2f", calculateShippingCost());
     }
 }
-
 
 class StandardPackage extends Package {
     public StandardPackage(String trackingID, String destination, double weight) {
@@ -65,7 +63,6 @@ class StandardPackage extends Package {
     }
 }
 
-
 class ExpressPackage extends Package {
     public ExpressPackage(String trackingID, String destination, double weight) {
         super(trackingID, destination, weight);
@@ -76,7 +73,6 @@ class ExpressPackage extends Package {
         return getWeight() * 4.0;
     }
 }
-
 
 class CourierManager {
     private ArrayList<Package> packages = new ArrayList<>();
@@ -106,7 +102,7 @@ class CourierManager {
     }
 
     public Package searchPackageByTrackingID(String trackingID) {
-        // Ensure the packages are sorted by trackingID
+
         packages.sort((p1, p2) -> p1.getTrackingID().compareTo(p2.getTrackingID()));
 
         int low = 0, high = packages.size() - 1;
@@ -125,7 +121,6 @@ class CourierManager {
     }
 }
 
-// Main class
 public class DeliveryDilemmas {
     public static void main(String[] args) {
         CourierManager manager = new CourierManager();
@@ -143,7 +138,7 @@ public class DeliveryDilemmas {
             System.out.println("5. Exit");
             System.out.print("Enter your choice: ");
             choice = scanner.nextInt();
-            scanner.nextLine(); 
+            scanner.nextLine();
 
             switch (choice) {
                 case 1:
@@ -157,9 +152,9 @@ public class DeliveryDilemmas {
                         System.out.print("Enter weight: ");
                         double weight = scanner.nextDouble();
 
-                        Package pkg = type.equalsIgnoreCase("Standard") ? 
-                                      new StandardPackage(trackingID, destination, weight) : 
-                                      new ExpressPackage(trackingID, destination, weight);
+                        Package pkg = type.equalsIgnoreCase("Standard")
+                                ? new StandardPackage(trackingID, destination, weight)
+                                : new ExpressPackage(trackingID, destination, weight);
 
                         manager.addPackage(pkg);
                         System.out.println("Package added successfully!");
