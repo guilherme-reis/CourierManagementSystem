@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
 import java.util.regex.Pattern;
-
+ 
 abstract class Package {
     private String trackingID;
     private String destination;
